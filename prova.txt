@@ -1,0 +1,18 @@
+1 )Anexe o código em OpenMP e um vídeo de demonstração de um programa que calcule a quantidade de números pŕimos entre 1 e N,
+para 21 variações de N, onde N muda através da função N = N * 2;
+OU seja
+Mostrar a quantidade de números primos entre:
+0 e 1
+0 e 2
+0 e 4
+0 e 8
+0 e 16
+0 e 32
+...
+0 e 1048576.
+Observação. Deve ser evidenciado o aumento de performance conforme se aumenta o paralelismo.
+
+
+2) openCl
+
+3) mpi
