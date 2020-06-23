@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpi.h"
+#include "omp.h"
 
 int totalPrimo(int num, int id, int p);
 
@@ -12,6 +13,9 @@ void main(int argc, char *argv[])
     int size, rank;
     MPI_Status st;
     int count = 0;
+    double t1, t2;
+
+    t1 = omp_get_wtime();
 
     MPI_Init(&argc, &argv);
 
@@ -26,13 +30,21 @@ void main(int argc, char *argv[])
 
         MPI_Reduce(&primos_total, &primos, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
 
-        if(rank == 0){
-            printf("ITERACAO: %i QTD PRIMOS DE 0 A %i = %i\n", count ,num, primos);
+        if (rank == 0)
+        {
+            printf("ITERACAO: %i QTD PRIMOS DE 0 A %i = %i\n", count, num, primos);
         }
 
         num = num * 2;
         count++;
+    }
 
+    if (rank == 0)
+    {
+        t2 = omp_get_wtime();
+
+        printf("\ntempo mpi: %f", t2 - t1);
+        printf("\n");
     }
 
     MPI_Finalize();
